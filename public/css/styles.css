@@ -15,6 +15,7 @@ h1 {
 
 .colors {
   text-align: center;
+  margin-bottom: 3rem;
 }
 
 .color-button {
@@ -22,4 +23,20 @@ h1 {
   height: 10rem;
   border-radius: 50%;
   margin: 0 1rem;
+  display: inline-block;
+}
+
+.lock { 
+  margin-top: 6rem;
+}
+
+.generate-colors {
+  display: block;
+  margin: 0 auto;
+  background-color: #6cc4ee;
+  width: 16rem;
+  height: 3rem;
+  border-radius: 5%;
+  font-size: 1.5rem;
+  margin-top: 2rem;
 }
