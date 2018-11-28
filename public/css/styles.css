@@ -3,7 +3,6 @@ body {
 }
 
 header {
-  margin-bottom: 4rem;
   text-align: center;
 }
 
@@ -15,7 +14,7 @@ h1 {
 
 .colors {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 5rem;
 }
 
 .color-button {
@@ -26,17 +25,55 @@ h1 {
   display: inline-block;
 }
 
+h5 {
+  color: white;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+
+}
+
+.lock-button {
+  margin-top: 2rem;
+  background-image: url("../assets/unlock-white.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  border: none;
+}
+
 .lock { 
-  margin-top: 6rem;
+  margin-top: 2rem;
+}
+
+.active {
+  background-image: url("../assets/lock-white.png");
 }
 
 .generate-colors {
   display: block;
   margin: 0 auto;
-  background-color: #6cc4ee;
+  background-color: #10daf4;
+  color: white;
   width: 16rem;
   height: 3rem;
   border-radius: 5%;
   font-size: 1.5rem;
-  margin-top: 2rem;
+  margin-bottom: 4rem;
 }
+
+.palette-form {
+  text-align: center;
+}
+
+h3 {
+  text-align: left;
+  margin: 3rem 0 0 7rem;
+  color: #e6e157;
+  font-size: 2rem;
+}
+
+
+
+
