@@ -16,6 +16,7 @@ app.get('/', (response, request) => {
 })
 
 app.get('/api/v1/projects', (request, response) => {
+
 });
 
 app.get('/api/v1/palettes', (request, response) => {
@@ -30,5 +31,5 @@ app.post('api/v1/palettes', (request, response) => {
 });
 
 app.listen(3000, () => {
-  // console.log(`${app.locals.title} is running on ${app.get('port')}`);
+  console.log(`Palette Picker is running on ${app.get('port')}`);
 });
