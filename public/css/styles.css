@@ -48,7 +48,7 @@ h5 {
 }
 
 .active {
-  background-image: url("../assets/lock-white.png");
+  background-image: url("../assets/locked.svg");
 }
 
 .generate-colors {
