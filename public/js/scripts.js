@@ -8,6 +8,7 @@ const createColor = () => {
 
 const createPalette = () => {
   let newColorArray = [];
+  
   const newColors = [...colors].forEach((color, index) => {
     if(!$(color).children('button').hasClass('active')) {
       let newColor = createColor().toUpperCase();
@@ -29,11 +30,24 @@ const toggleLock = (event) => {
   activeButton.classList.toggle("active")
 }
 
+const savePalette = (event) => {
+  event.preventDefault();
+  let palette = {
+    name : $('.palette-input').val(),
+    color1: $('.color1').text(),
+    color2: $('.color2').text(),
+    color3: $('.color3').text(),
+    color4: $('.color4').text(),
+    color5: $('.color5').text()
+  }
+  sendPalette(palette); 
+}
+
 
 $(window).on('load', createPalette); 
 $('.generate-colors').on('click', generateNewPalette);
 $('.lock-button').click(toggleLock);
-$('.').click(saveProject)
-$("#btn1").click(savePalette);
+$('.project-form').submit(saveProject);
+$('.palette-form').submit(savePalette);
         
-    });
+    
