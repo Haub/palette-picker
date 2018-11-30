@@ -2,23 +2,48 @@
 <html>
 <head>
   <title>Palette Picker</title>
-  <link rel="stylesheet" type="text/css" href="css/normalize.css">
   <link rel="stylesheet" type="text/css" href="css/styles.css"> 
 </head>
 <body>
   <header>
-    <h1>
-      <img src='../assets/ice-cream.png' width = "80" alt="" /> Palette Picker
-    </h1>
+    <img src='../assets/ice-cream.png' height = "80" alt="" /> 
+    <h1>Palette Picker</h1>
   </header>
   <main>
     <section class="colors">
-      <button>Color 1 </button>
-      <button>Color 2 </button>
-      <button>Color 3 </button>
-      <button>Color 4 </button>
-      <button>Color 5 </button>
-  </main>
+      <button class="generate-colors">Generate Colors</button>
+      <article type="button" name="color1" class="color1 color-button">
+        <h5></h5>
+        <button class='lock-button'></button>
+      </article> 
+      <article type="button" name="color2" class="color2 color-button">
+        <h5></h5>
+        <button class='lock-button'></button>
+      </article> 
+      <article type="button" name="color3" class="color3 color-button">
+        <h5></h5>
+        <button class='lock-button'></button>
+      </article> 
+      <article type="button" name="color4" class="color4 color-button">
+        <h5></h5>
+        <button class='lock-button'></button>
+      </article>  
+      <article type="button" name="color5" class="color5 color-button">
+        <h5></h5>
+        <button class='lock-button'></button>
+      </article>  
 
+    </section>
+    <form class="palette-form">
+      <input type="text" placeholder="palette name" />
+      <button>Add palette</button>
+    </form>  
+
+    <section class="projects">
+      <h3>View Saved Projects</h3>
+      <!-- //template literal for project -->
+    </section>  
+  </main>
+  <script type="text/javascript" src="js/scripts.js"></script>
 </body>
 </html>

@@ -2,6 +2,78 @@ body {
   background-color: #394045;
 }
 
+header {
+  text-align: center;
+}
+
 h1 {
   color: #F75B57;
+  display: inline-block;
+  font-size: 5.3rem;
 }
+
+.colors {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.color-button {
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  margin: 0 1rem;
+  display: inline-block;
+}
+
+h5 {
+  color: white;
+  font-size: 1rem;
+  letter-spacing: 0.2em;
+
+}
+
+.lock-button {
+  margin-top: 2rem;
+  background-image: url("../assets/unlock-white.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 35px;
+  height: 35px;
+  background-color: transparent;
+  border: none;
+}
+
+.lock { 
+  margin-top: 2rem;
+}
+
+.active {
+  background-image: url("../assets/locked.svg");
+}
+
+.generate-colors {
+  display: block;
+  margin: 0 auto;
+  background-color: #10daf4;
+  color: white;
+  width: 16rem;
+  height: 3rem;
+  border-radius: 5%;
+  font-size: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.palette-form {
+  text-align: center;
+}
+
+h3 {
+  text-align: left;
+  margin: 3rem 0 0 7rem;
+  color: #e6e157;
+  font-size: 2rem;
+}
+
+
+
+
