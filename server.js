@@ -14,7 +14,9 @@ app.get('/', (request, response) => {
 })
 
 app.get('/api/v1/projects', (request, response) => {
- 
+  database('projects').select()
+    .then((projects) => response.status(200).json(projects))
+    .catch((error) => response.status(500).send({error: `Error: ${error.message}`}))
 });
 
 app.get('/api/v1/projects/:id', (request, response) => {
@@ -34,7 +36,10 @@ app.get('/api/v1/palettes', (request, response) => {
 
 
 app.post('/api/v1/palettes', (request, response) => {
-  
+  const palette = request.body;
+  database('palettes').insert(palette, 'id')
+    .then((paletteIds) => response.status(200).json({message: `New project with id of ${paletteIds[0]} inserted successfully.`}))
+    .catch((error) => response.status(500).send({error: `Error: ${error.message}`}))
 });
 
 app.delete('/api/v1/palettes', (request, response) => {
