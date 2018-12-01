@@ -41,7 +41,6 @@ const savePalette = (event) => {
     color5: $('.color5').text(),
     project_id: $('.project-options option:selected').val()
   }
-  console.log(palette)
   postPalette(palette);
   $('form :input').val(''); 
 }
@@ -61,8 +60,10 @@ const saveProject = (event) => {
   let project = {
     name
   }
+  let option = new Option(name)
+  $('select').append($(option));
   postProject(project)
-
+  $('form :input').val('');
 }
 
 const postProject = async(project) => {
