@@ -38,9 +38,40 @@ const savePalette = (event) => {
     color2: $('.color2').text(),
     color3: $('.color3').text(),
     color4: $('.color4').text(),
-    color5: $('.color5').text()
+    color5: $('.color5').text(),
+    project_id: $('.project-options option:selected').val()
   }
-  sendPalette(palette); 
+  console.log(palette)
+  postPalette(palette);
+  $('form :input').val(''); 
+}
+
+const postPalette = async(palette) => {
+  const response = await fetch('/api/v1/palettes', {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(palette)
+  })
+  return await response.json();
+}
+
+const saveProject = (event) => {
+  event.preventDefault();
+  let name = $('.project-input').val();
+  let project = {
+    name
+  }
+  postProject(project)
+
+}
+
+const postProject = async(project) => {
+  const response = await fetch('/api/v1/projects', {
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify(project)
+  })
+  return await response.json();
 }
 
 
