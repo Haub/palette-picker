@@ -20,25 +20,27 @@ app.get('/api/v1/projects', (request, response) => {
 });
 
 app.get('/api/v1/projects/:id', (request, response) => {
-
+  
 });
 
 app.post('/api/v1/projects', (request, response) => {
   const project = request.body;
   database('projects').insert(project, 'id')
-    .then((projectIds) => response.status(200).json({message: `New project with id of ${projectIds[0]} inserted successfully.`}))
+    .then((projectIds) => response.status(200).json({message: `New project with id of ${projectIds[0]} inserted successfully.`, id: `${projectIds[0]}`}))
     .catch((error) => response.status(500).send({error: `Error: ${error.message}`}))
 });
 
 app.get('/api/v1/palettes', (request, response) => {
-
+  database('palettes').select()
+    .then((palettes) => response.status(200),json())
+    .catch((error) => response.status(500).send({error: `Error: ${error.message}`}))
 })
 
 
 app.post('/api/v1/palettes', (request, response) => {
   const palette = request.body;
   database('palettes').insert(palette, 'id')
-    .then((paletteIds) => response.status(200).json({message: `New project with id of ${paletteIds[0]} inserted successfully.`}))
+    .then((paletteIds) => response.status(200).json({message: `New project with id of ${paletteIds[0]} inserted successfully.`, id: `${paletteIds[0]}`}))
     .catch((error) => response.status(500).send({error: `Error: ${error.message}`}))
 });
 
