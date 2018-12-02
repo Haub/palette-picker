@@ -12,38 +12,85 @@
   <main>
     <section class="colors">
       <button class="generate-colors">Generate Colors</button>
-      <article type="button" name="color1" class="color1 color-button">
-        <h5></h5>
+      <article type="button" name="color1" class="color-button">
+        <h5 class="color1"></h5>
         <button class='lock-button'></button>
       </article> 
-      <article type="button" name="color2" class="color2 color-button">
-        <h5></h5>
+      <article type="button" name="color2" class=" color-button">
+        <h5 class="color2"></h5>
         <button class='lock-button'></button>
       </article> 
-      <article type="button" name="color3" class="color3 color-button">
-        <h5></h5>
+      <article type="button" name="color3" class=" color-button">
+        <h5 class="color3"></h5>
         <button class='lock-button'></button>
       </article> 
-      <article type="button" name="color4" class="color4 color-button">
-        <h5></h5>
+      <article type="button" name="color4" class="color-button">
+        <h5 class="color4"></h5>
         <button class='lock-button'></button>
       </article>  
-      <article type="button" name="color5" class="color5 color-button">
-        <h5></h5>
+      <article type="button" name="color5" class="color-button">
+        <h5 class="color5"></h5>
         <button class='lock-button'></button>
       </article>  
 
     </section>
+    
     <form class="palette-form">
-      <input type="text" placeholder="palette name" />
+     <!--  <div class="custom-select" style="width:200px;"> -->
+      <select class="project-options" name='selector' id='selector'>
+        <option value="" disabled selected>Select your project</option>
+      </select>
+
+      <input class="palette-input" type="text" placeholder="palette name" />
       <button>Add palette</button>
     </form>  
 
+    <form class="project-form">
+      <input class="project-input" type="text" placeholder="project name" />
+      <button>Add project</button>
+    </form> 
+
     <section class="projects">
-      <h3>View Saved Projects</h3>
+      <h3 class="project-title">View Saved Projects</h3>
       <!-- //template literal for project -->
+      <h2>Project1
+      <br>
+      <div class="project">
+        <h6>Winter</h6>
+        <div class="scoop scoop1"></div>
+        <div class="scoop scoop2"></div>
+        <div class="scoop scoop3"></div>
+        <div class="scoop scoop4"></div>
+        <div class="scoop scoop5"></div>
+        <div class="cone"></div>
+      </div>
+
+      <div class="project">
+        <h6>Fun Colors</h6>
+        <div class="scoop scoop1"></div>
+        <div class="scoop scoop2"></div>
+        <div class="scoop scoop3"></div>
+        <div class="scoop scoop4"></div>
+        <div class="scoop scoop5"></div>
+        <div class="cone"></div>
+      </div>
+
+      <div class="project">
+        <h6>Rainy Day</h6>
+        <div class="scoop scoop1"></div>
+        <div class="scoop scoop2"></div>
+        <div class="scoop scoop3"></div>
+        <div class="scoop scoop4"></div>
+        <div class="scoop scoop5"></div>
+        <div class="cone"></div>
+      </div>
+
+
     </section>  
+
   </main>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script type="text/javascript" src="js/scripts.js"></script>
 </body>
 </html>
