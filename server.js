@@ -4,6 +4,7 @@ const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
 const app = express();
+
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
@@ -64,7 +65,6 @@ app.get('/api/v1/palettes/:id', (request, response) => {
     });
 });
 
-
 app.post('/api/v1/palettes', (request, response) => {
   const palette = request.body;
   database('palettes').insert(palette, 'id')
@@ -72,10 +72,21 @@ app.post('/api/v1/palettes', (request, response) => {
     .catch((error) => response.status(500).send({error: `Error: ${error.message}`}))
 });
 
-app.delete('/api/v1/palettes', (request, response) => {
-
-})
-
+app.delete('/api/v1/palettes/:id', (request, response) => {
+  database('palettes').where('id', request.params.id).del()
+    .then(palettes => {
+      if (palettes.length) {
+        response.status(200).json(palettes);
+      } else {
+        response.status(404).json({ 
+          error: `Could not find palette with id ${request.params.id}`
+        });
+      }
+    })
+    .catch(error => {
+      response.status(500).json({error: `Error: ${error.message}`});
+    });
+});
 
 app.listen(3000, () => {
   console.log(`Palette Picker is running on ${app.get('port')}`);
