@@ -60,8 +60,6 @@ const saveProject = (event) => {
   let project = {
     name
   }
-  let option = new Option(name)
-  $('select').append($(option));
   postProject(project)
   $('form :input').val('');
 }
@@ -72,7 +70,18 @@ const postProject = async(project) => {
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(project)
   })
-  return await response.json();
+  const result = await response.json();
+  $('.project-options').append(`<option value='${result.id}'>${project.name}</option>`)
+}
+
+const getProjects = async() => {
+  const response = await fetch('/api/v1/projects')
+  const projects = await response.json
+  addProjects(projects)
+}
+
+const addProjects = (projects) => {
+  // projects.each()
 }
 
 
