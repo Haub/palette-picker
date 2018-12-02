@@ -98,21 +98,25 @@ const getPalettes = async(project) => {
 
   const response = await fetch('/api/v1/palettes');
   const palettes = await response.json();
+  $('.featured-project').append(`
+    <h6 class="project-name" value = ${project.id}>${project.name}</h6>
+    <br>
+  `)
+  
   palettes.forEach(palette => {
     if(palette.project_id === project.id)
-      $('.featured-project').append(`
-        <h6 class="project-name" value = ${project.id}>${project.name}</h6>
-      `)
 
       $('.project-name').append(`
-        <h4 value = ${palette.id}>${palette.name}</h6>
-        <div class="scoop" value="${palette.color1}" style="background-color:${palette.color1}"></div>  
-        <div class="scoop" value="${palette.color2}" style="background-color:${palette.color2}"></div>  
-        <div class="scoop" value="${palette.color3}" style="background-color:${palette.color3}"></div>  
-        <div class="scoop" value="${palette.color4}" style="background-color:${palette.color4}"></div>  
-        <div class="scoop" value="${palette.color5}" style="background-color:${palette.color5}"></div>  
-        
-        <div class="cone"></div>  
+        <span>
+          <h4 value = ${palette.id}>${palette.name}</h6>
+          <div class="scoop" value="${palette.color1}" style="background-color:${palette.color1}"></div>  
+          <div class="scoop" value="${palette.color2}" style="background-color:${palette.color2}"></div>  
+          <div class="scoop" value="${palette.color3}" style="background-color:${palette.color3}"></div>  
+          <div class="scoop" value="${palette.color4}" style="background-color:${palette.color4}"></div>  
+          <div class="scoop" value="${palette.color5}" style="background-color:${palette.color5}"></div>  
+          
+          <div class="cone"></div>  
+        </span>
       `)     
   })
 }
