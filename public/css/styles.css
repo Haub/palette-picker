@@ -87,7 +87,11 @@ h3 {
   margin-left: 6rem;
 }
 
-.project {
+.featured-project {
+  display: block;
+}
+
+span {
   display: inline-block;
 }
 
@@ -107,7 +111,7 @@ h6 {
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
-  background-color: red;
+  /*background-color: red;*/
   margin-bottom: -2rem;
   margin-right: 10rem ;
 }
