@@ -1,19 +1,16 @@
-
-const colors = document.querySelectorAll('.color-button');
-const hexColors = document.querySelectorAll('h5');
-
 const loadPalettePicker = () => {
   createPalette();
   getProjects();
-}
+};
 
 const createColor = () => {
   return '#' + ('000000' + Math.floor(16777216 * Math.random()).toString(16)).slice(-6);
-}
+};
 
 const createPalette = () => {
   let newColorArray = [];
   
+const colors = document.querySelectorAll('.color-button');
   const newColors = [...colors].forEach((color, index) => {
     if(!$(color).children('button').hasClass('active')) {
       let newColor = createColor().toUpperCase();
@@ -23,17 +20,17 @@ const createPalette = () => {
     }
   })  
   return newColors;
-}
+};
 
 const generateNewPalette = () => {
   event.preventDefault();
   createPalette();
-}
+};
 
 const toggleLock = (event) => {
   let activeButton = event.target;
   activeButton.classList.toggle("active")
-}
+};
 
 const savePalette = (event) => {
   event.preventDefault();
@@ -49,7 +46,7 @@ const savePalette = (event) => {
   postPalette(palette);
   $('form :input').val('');
   $('.lock-button').removeClass('active');
-}
+};
 
 const postPalette = async(palette) => {
   const response = await fetch('/api/v1/palettes', {
@@ -57,8 +54,10 @@ const postPalette = async(palette) => {
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(palette)
   })
-  return await response.json();
-}
+  const newPalette = await response.json();
+  return newPalette
+  // addProjects(palette)
+};
 
 const saveProject = (event) => {
   event.preventDefault();
@@ -68,7 +67,7 @@ const saveProject = (event) => {
   }
   postProject(project)
   $('form :input').val('');
-}
+};
 
 const postProject = async(project) => {
   const response = await fetch('/api/v1/projects', {
@@ -76,50 +75,66 @@ const postProject = async(project) => {
     headers: {"Content-Type": "application/json"},
     body: JSON.stringify(project)
   })
-  const result = await response.json();
-  $('.project-options').append(`<option value='${result.id}'>${project.name}</option>`);
-}
+  const result = await response.json(); 
+  // addProjects(result);
+
+  // $(`#${project.id}`).append(`<option value='${project.id}'>${project.name}</option>`);
+  // $('.featured-project').append(`
+  //     <h6 class="project-name" value = ${project.id}>${project.name}</h6>
+  //   `)
+  getProjects();
+};
 
 const getProjects = async() => {
   const response = await fetch('/api/v1/projects')
   const projects = await response.json()
   addProjects(projects)
-}
+};
 
 const addProjects = (projects) => {
   projects.forEach((project) => {
-    // $('.featured-project').append(`<h6 value = ${project.id}>${project.name}</h6>`)
     getPalettes(project)
-    $('.project-options').append(`<option value='${project.id}'>${project.name}</option>`)
+    $('.project-options').append(`<option value='${project.id}'>${project.name}</option>`);
+    $('.featured-project').append(`
+      <h6 class="project-name" value = ${project.id}>${project.name}</h6>
+      <div class="palette" id=${project.id}"></div>
+    `)
   })
-}
+};
 
 const getPalettes = async(project) => {
 
   const response = await fetch('/api/v1/palettes');
   const palettes = await response.json();
-  $('.featured-project').append(`
-    <h6 class="project-name" value = ${project.id}>${project.name}</h6>
-    <br>
-  `)
   
   palettes.forEach(palette => {
     if(palette.project_id === project.id)
+      // $(`#${palette.project_id}`).append(`
 
-      $('.project-name').append(`
-        <span>
-          <h4 value = ${palette.id}>${palette.name}</h6>
+      $('.palette').append(`
+
+        <div class="palette-div" id="{palette.id}">
+          <h4 value = ${palette.id} class="palette-name" id=${palette.id}>${palette.name}<span><button class="delete" value = ${palette.id}></button></span></h4>
           <div class="scoop" value="${palette.color1}" style="background-color:${palette.color1}"></div>  
           <div class="scoop" value="${palette.color2}" style="background-color:${palette.color2}"></div>  
           <div class="scoop" value="${palette.color3}" style="background-color:${palette.color3}"></div>  
           <div class="scoop" value="${palette.color4}" style="background-color:${palette.color4}"></div>  
           <div class="scoop" value="${palette.color5}" style="background-color:${palette.color5}"></div>  
-          
-          <div class="cone"></div>  
-        </span>
+          <div class="cone"></div>
+        </div>  
       `)     
   })
-}
+};
+
+const removePalette = async(event) => {
+  let id = event.target.value;
+  const response = await fetch(`/api/v1/palettes/${id}`, {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' }
+  });
+  const palette = await response.json();
+  $(event.target).closest(`#${id}`).remove();
+};
 
 
 $(window).on('load', loadPalettePicker); 
@@ -127,6 +142,6 @@ $('.generate-colors').on('click', generateNewPalette);
 $('.lock-button').click(toggleLock);
 $('.project-form').submit(saveProject);
 $('.palette-form').submit(savePalette);
-// $('.featured-project').on('click', getPalettes)
+$('.featured-project').click('.delete', removePalette)
         
     
